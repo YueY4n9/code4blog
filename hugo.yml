@@ -1,0 +1,48 @@
+baseURL: 'https://example.org/'
+languageCode: 'zh-CN'
+title: '卷毛的博客'
+theme: 'papermod'
+author: "yueyang"
+images: 'https://avatars.githubusercontent.com/u/42286278?v=4'
+
+params:
+  profileMode:
+    enabled: true
+    title: '一只卷毛怪的程序人生' # optional default will be site title
+    subtitle: "This is profileMode subtitle"
+    imageUrl: "https://avatars.githubusercontent.com/u/42286278?v=4" # optional
+    imageWidth: 100 # custom size
+    imageHeight: 100 # custom size
+    buttons:
+      - name: 文章
+        url: "/posts"
+      - name: Github
+        url: "https://github.com/"
+
+  dateFormat: '2006年1月2日15:04:05'
+  disableThemeToggle: true
+  #   defaultTheme: light
+  defaultTheme: dark
+  #   defaultTheme: auto
+
+  homeInfoParams:
+    enable: false
+    Title: This is homeInfoParams Title
+    Content: This is homeInfoParams Content
+  socialIcons: # optional
+    - name: "GitHub"
+      url: "https://github.com/YueY4n9"
+
+  ShowShareButtons: false # 底部出现分享按钮
+  ShareButtons: [ "linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegram" ] # To customize which share buttons to be enabled on page
+  ShowToc: true # 文章显示目录
+  ShowBreadCrumbs: true # 文章顶部面包屑功能
+  ShowPostNavLinks: true # 展示上一篇/下一篇
+  ShowCodeCopyButtons: true # 代码复制按钮
+  ShowReadingTime: true # 展示阅读时间
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
