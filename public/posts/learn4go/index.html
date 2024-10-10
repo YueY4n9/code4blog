@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learn4go | 卷毛的博客</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+本文目的是记录我从 Java 开发转 Golang 开发的学习经历，分享一下学习过程来帮助想要 Java 转 Golang 的朋友一起进步一起学习！
+">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/learn4go/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/learn4go/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class=" dark" id="top">
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="卷毛的博客 (Alt + H)">卷毛的博客</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Learn4go
+    </h1>
+    <div class="post-meta"><span title='2021-06-16 22:18:18 +0800 CST'>2021年6月16日22:18:18</span>&nbsp;·&nbsp;7 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#0%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae" aria-label="0、安装配置">0、安装配置</a></li>
+                <li>
+                    <a href="#1golang%e5%9f%ba%e7%a1%80" aria-label="1、Golang基础">1、Golang基础</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#%e4%bc%98%e5%8a%bf" aria-label="优势：">优势：</a></li>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4" aria-label="命令">命令</a></li>
+                <li>
+                    <a href="#%e5%8f%98%e9%87%8f" aria-label="变量">变量</a></li>
+                <li>
+                    <a href="#%e5%b8%b8%e9%87%8f" aria-label="常量">常量</a></li></ul>
+                    
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="基本数据类型">基本数据类型</a><ul>
+                        
+                <li>
+                    <a href="#%e6%95%b4%e5%9e%8b" aria-label="整型">整型</a><ul>
+                        
+                <li>
+                    <a href="#%e5%85%ab%e8%bf%9b%e5%88%b6%e5%8d%81%e5%85%ad%e8%bf%9b%e5%88%b6" aria-label="八进制&amp;十六进制">八进制&amp;十六进制</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%b5%ae%e7%82%b9%e5%9e%8b" aria-label="浮点型">浮点型</a></li>
+                <li>
+                    <a href="#%e5%a4%8d%e6%95%b0" aria-label="复数">复数</a></li>
+                <li>
+                    <a href="#%e5%b8%83%e5%b0%94%e5%9e%8b" aria-label="布尔型">布尔型</a></li>
+                <li>
+                    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2" aria-label="字符串">字符串</a><ul>
+                        
+                <li>
+                    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c" aria-label="字符串操作">字符串操作</a></li>
+                <li>
+                    <a href="#%e5%ad%97%e7%ac%a6" aria-label="字符">字符</a></li>
+                <li>
+                    <a href="#%e4%bf%ae%e6%94%b9%e5%ad%97%e7%ac%a6%e4%b8%b2" aria-label="修改字符串">修改字符串</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%a4%8d%e5%90%88%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" aria-label="复合数据类型">复合数据类型</a><ul>
+                        
+                <li>
+                    <a href="#%e6%95%b0%e7%bb%84" aria-label="数组">数组</a><ul>
+                        
+                <li>
+                    <a href="#%e5%88%9d%e5%a7%8b%e5%8c%96" aria-label="初始化">初始化</a></li>
+                <li>
+                    <a href="#%e9%81%8d%e5%8e%86" aria-label="遍历">遍历</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%88%87%e7%89%87" aria-label="切片">切片</a><ul>
+                        
+                <li>
+                    <a href="#%e9%95%bf%e5%ba%a6%e5%92%8c%e5%ae%b9%e9%87%8f" aria-label="长度和容量">长度和容量</a></li>
+                <li>
+                    <a href="#%e7%94%b1%e6%95%b0%e7%bb%84%e5%be%97%e5%88%b0%e5%88%87%e7%89%87" aria-label="由数组得到切片">由数组得到切片</a></li>
+                <li>
+                    <a href="#make%e5%87%bd%e6%95%b0" aria-label="make函数">make函数</a></li>
+                <li>
+                    <a href="#append%e5%87%bd%e6%95%b0" aria-label="append函数">append函数</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#fmt%e5%8c%85" aria-label="fmt包">fmt包</a></li>
+                <li>
+                    <a href="#%e6%b5%81%e7%a8%8b%e6%8e%a7%e5%88%b6" aria-label="流程控制">流程控制</a><ul>
+                        
+                <li>
+                    <a href="#if" aria-label="if">if</a></li>
+                <li>
+                    <a href="#for" aria-label="for">for</a></li>
+                <li>
+                    <a href="#for-range" aria-label="for range">for range</a></li>
+                <li>
+                    <a href="#switch" aria-label="switch">switch</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e8%bf%90%e7%ae%97%e7%ac%a6" aria-label="运算符">运算符</a></li>
+                <li>
+                    <a href="#%e6%8c%87%e9%92%88" aria-label="指针">指针</a><ul>
+                        
+                <li>
+                    <a href="#new%e5%87%bd%e6%95%b0" aria-label="new函数">new函数</a></li>
+                <li>
+                    <a href="#make%e5%87%bd%e6%95%b0-1" aria-label="make函数">make函数</a></li>
+                <li>
+                    <a href="#new%e5%92%8cmake" aria-label="new和make">new和make</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%bb%93%e6%9e%84%e4%bd%93" aria-label="结构体">结构体</a><ul>
+                        
+                <li>
+                    <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e7%b1%bb%e5%9e%8b" aria-label="自定义类型">自定义类型</a></li>
+                <li>
+                    <a href="#%e7%bb%93%e6%9e%84%e4%bd%93-1" aria-label="结构体">结构体</a></li>
+                <li>
+                    <a href="#%e7%bb%93%e6%9e%84%e4%bd%93%e5%ae%9e%e4%be%8b%e5%8c%96" aria-label="结构体实例化">结构体实例化</a></li>
+                <li>
+                    <a href="#%e5%8c%bf%e5%90%8d%e7%bb%93%e6%9e%84%e4%bd%93" aria-label="匿名结构体">匿名结构体</a></li>
+                <li>
+                    <a href="#%e7%bb%93%e6%9e%84%e4%bd%93%e6%8c%87%e9%92%88" aria-label="结构体指针">结构体指针</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#2golang%e6%a0%87%e5%87%86%e5%ba%93" aria-label="2、Golang标准库">2、Golang标准库</a><ul>
+                        
+                <li>
+                    <a href="#strconv" aria-label="strconv">strconv</a><ul>
+                        
+                <li>
+                    <a href="#atoi" aria-label="Atoi()">Atoi()</a></li>
+                <li>
+                    <a href="#itoa" aria-label="Itoa()">Itoa()</a></li>
+                <li>
+                    <a href="#parsebool" aria-label="ParseBool()">ParseBool()</a></li>
+                <li>
+                    <a href="#parseint" aria-label="ParseInt()">ParseInt()</a></li>
+                <li>
+                    <a href="#parseunit" aria-label="ParseUnit()">ParseUnit()</a></li>
+                <li>
+                    <a href="#parsefloat" aria-label="ParseFloat()">ParseFloat()</a></li>
+                <li>
+                    <a href="#formatbool" aria-label="FormatBool()">FormatBool()</a></li>
+                <li>
+                    <a href="#formatint" aria-label="FormatInt()">FormatInt()</a></li>
+                <li>
+                    <a href="#formatuint" aria-label="FormatUint()">FormatUint()</a></li>
+                <li>
+                    <a href="#formatfloat" aria-label="FormatFloat()">FormatFloat()</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#3%e5%bc%82%e5%b8%b8%e6%9c%ba%e5%88%b6" aria-label="3、异常机制">3、异常机制</a></li>
+                <li>
+                    <a href="#4golang%e7%ac%ac%e4%b8%89%e6%96%b9%e5%8c%85" aria-label="4、Golang第三方包">4、Golang第三方包</a><ul>
+                        
+                <li>
+                    <a href="#githubcomgin-gonicgin" aria-label="github.com/gin-gonic/gin">github.com/gin-gonic/gin</a></li></ul>
+                </li>
+                <li>
+                    <a href="#golang-%e7%9a%84%e7%bc%96%e8%af%91%e8%bf%87%e7%a8%8b" aria-label="Golang 的编译过程">Golang 的编译过程</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p>本文目的是记录我从 Java 开发转 Golang 开发的学习经历，分享一下学习过程来帮助想要 Java 转 Golang 的朋友一起进步一起学习！</p>
+</blockquote>
+<h1 id="0安装配置">0、安装配置<a hidden class="anchor" aria-hidden="true" href="#0安装配置">#</a></h1>
+<p>下载地址：https://golang.google.cn/dl/</p>
+<p>下载好了用<code>go version</code>来校验</p>
+<p>配置环境：GOPATH、Path</p>
+<p>配置好了用<code>go env</code>来校验</p>
+<h1 id="1golang基础">1、Golang基础<a hidden class="anchor" aria-hidden="true" href="#1golang基础">#</a></h1>
+<h3 id="优势">优势：<a hidden class="anchor" aria-hidden="true" href="#优势">#</a></h3>
+<ul>
+<li>并发编程优雅简单：Go语言原生支持协程（goroutine）和管道（channel），并提供了灵活而简单的并发编程机制。使用goroutine可以让我们非常方便地实现高并发、高性能的服务，同时也能有效避免线程安全问题。</li>
+<li>零值机制：天生就有初始值，不用考虑空值情况。</li>
+<li>内存管理自动化：Go语言的垃圾回收机制使得开发者可以不用关心内存的回收问题，极大地降低了程序出错的可能性和代码的复杂度。</li>
+<li>语法简洁、易读易写：Go语言的语法简洁，没有像C++和Java那样繁琐的语法，特别是其强制规范化的代码风格更是方便了开发者对代码的理解和阅读。</li>
+<li>静态类型系统：Go语言采用静态类型系统，可以在编译期检查出很多类型错误，避免了在运行时出现的错误。</li>
+<li>良好的可移植性：Go语言的标准库支持多种操作系统和硬件平台，开发者可以轻松地将代码移植到不同的平台上。</li>
+<li>开发效率高：Go语言的构建工具可以帮助开发者进行高效构建和测试。同时，Go语言的包管理工具go mod也是一个非常强大的工具，可以帮助开发者解决依赖管理和版本控制等问题。</li>
+</ul>
+<h3 id="命令">命令<a hidden class="anchor" aria-hidden="true" href="#命令">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>go build
+</span></span><span style="display:flex;"><span>go build -o <span style="color:#e6db74">&#34;***.exe&#34;</span>
+</span></span><span style="display:flex;"><span>go run main.go
+</span></span><span style="display:flex;"><span>go install
+</span></span></code></pre></div><h3 id="变量">变量<a hidden class="anchor" aria-hidden="true" href="#变量">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 匿名变量(就是一个下划线) -&gt; _ : 匿名变量不占用命名空间，不会分配内存（Lua里叫哑元变量）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">foo</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">s</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">foo</span>(<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;zero&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">foo</span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;one&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>  <span style="color:#75715e">// 声明
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">age</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">16</span> <span style="color:#75715e">// 声明并赋值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 类型推导
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s1</span> <span style="color:#66d9ef">string</span> = <span style="color:#e6db74">&#34;string1&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s2</span> = <span style="color:#e6db74">&#34;string2&#34;</span> <span style="color:#75715e">// 上面可直接写成这样
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 简短变量声明，只能在函数中使用，不能在全局使用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">s3</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;string3&#34;</span> <span style="color:#75715e">// 上面的简写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>, <span style="color:#a6e22e">s1</span>, <span style="color:#a6e22e">s2</span>, <span style="color:#a6e22e">s3</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>注意事项：</p>
+<ul>
+<li>函数外每个语句必须以关键字开始（var、func、const等）</li>
+<li>:= 不能用于函数外</li>
+<li>_用于占位符，表示忽略值</li>
+<li>函数内声明变量不使用，编译不能通过（似乎不同版本有不同的要求）</li>
+</ul>
+<h3 id="常量">常量<a hidden class="anchor" aria-hidden="true" href="#常量">#</a></h3>
+<p>常量是恒定不变的值，使用关键字const</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 单个声明
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pai</span> = <span style="color:#ae81ff">3.1415926</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 批量声明
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">statusOK</span> = <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">notFound</span> = <span style="color:#ae81ff">404</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 这种批量声明方式，没有赋值的常量默认和上面那个值一样
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">n1</span> = <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">n2</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">n3</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// iota: 常量计数器, iota将在const关键字出现时重置为0，const中每新增一行常量声明将使iota计数一次（iota可以理解成const语句块的行索引）。使用iota简化定义，在定义枚举时很有用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">n1</span> = <span style="color:#66d9ef">iota</span> <span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">n2</span>        <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">n3</span>        <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">n4</span>        <span style="color:#75715e">// 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">a1</span> = <span style="color:#66d9ef">iota</span> <span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">a2</span>        <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">_</span>         <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">a3</span>        <span style="color:#75715e">// 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">b1</span> = <span style="color:#66d9ef">iota</span> <span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">b2</span> = <span style="color:#ae81ff">100</span>  <span style="color:#75715e">// 100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">b3</span> = <span style="color:#66d9ef">iota</span> <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">b4</span>        <span style="color:#75715e">// 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 多个常量声明在一行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c1</span>, <span style="color:#a6e22e">c2</span> = <span style="color:#66d9ef">iota</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">iota</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e">// d1:0+1, d2:0+2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">c3</span>, <span style="color:#a6e22e">c4</span> = <span style="color:#66d9ef">iota</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">iota</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e">// d3:1+1, d4:1+2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// iota的应用，举个例子
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span>  = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">KB</span> = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">iota</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">MB</span> = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">iota</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GB</span> = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">iota</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">TB</span> = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">iota</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">PB</span> = <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> (<span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">iota</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="基本数据类型">基本数据类型<a hidden class="anchor" aria-hidden="true" href="#基本数据类型">#</a></h2>
+<p>基本数据类型有整型、浮点型、布尔型、字符串、数组、切片、结构体、函数、map、通道等</p>
+<h3 id="整型">整型<a hidden class="anchor" aria-hidden="true" href="#整型">#</a></h3>
+<p>int8、int16、int32、int64、uint8、uint16、uint32、uint64</p>
+<p>特殊整型：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">类型</th>
+          <th style="text-align: center">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">uinit</td>
+          <td style="text-align: center">32位操作系统上就是uint32，64位操作系统上就是uint64</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">int</td>
+          <td style="text-align: center">32位操作系统上就是int32，64位操作系统上就是int64</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">uintptr</td>
+          <td style="text-align: center">无符号整型，用于存放一个指针</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="八进制十六进制">八进制&amp;十六进制<a hidden class="anchor" aria-hidden="true" href="#八进制十六进制">#</a></h4>
+<p>Go语言中无法直接使用二进制，关于八进制和十六进制实例如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">num1</span> = <span style="color:#ae81ff">101</span>               <span style="color:#75715e">// 十进制
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%d\n&#34;</span>, <span style="color:#a6e22e">num1</span>)     <span style="color:#75715e">// 输出十进制数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%b\n&#34;</span>, <span style="color:#a6e22e">num1</span>)     <span style="color:#75715e">// 输出二进制数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%o\n&#34;</span>, <span style="color:#a6e22e">num1</span>)     <span style="color:#75715e">// 输出八进制数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%x\n&#34;</span>, <span style="color:#a6e22e">num1</span>)     <span style="color:#75715e">// 输出十六进制数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%T\n&#34;</span>, <span style="color:#a6e22e">num1</span>)     <span style="color:#75715e">// 输出数据类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">num2</span> = <span style="color:#ae81ff">077</span>               <span style="color:#75715e">// 八进制
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">num3</span> = <span style="color:#ae81ff">0x123456789abcdef</span> <span style="color:#75715e">// 十六进制
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 强制声明int8类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">num4</span> <span style="color:#66d9ef">int8</span> = <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">num2</span>, <span style="color:#a6e22e">num3</span>, <span style="color:#a6e22e">num4</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="浮点型">浮点型<a hidden class="anchor" aria-hidden="true" href="#浮点型">#</a></h3>
+<p>float32、float64</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">f1</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1.2345</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%T\n&#34;</span>, <span style="color:#a6e22e">f1</span>) <span style="color:#75715e">// float64 默认go语言中小数都是float64
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="复数">复数<a hidden class="anchor" aria-hidden="true" href="#复数">#</a></h3>
+<p><code>complex128</code>和<code>complex64</code></p>
+<h3 id="布尔型">布尔型<a hidden class="anchor" aria-hidden="true" href="#布尔型">#</a></h3>
+<p>Go语言中使用<code>bool</code>类型声明布尔型，只有<code>true</code>和<code>false</code>两个值</p>
+<p>注意事项：</p>
+<ul>
+<li>布尔型默认值是<code>false</code></li>
+<li>不允许将整型强转为布尔型</li>
+<li>布尔型无法参与数值运算，也无法与其他类型进行转换</li>
+</ul>
+<h3 id="字符串">字符串<a hidden class="anchor" aria-hidden="true" href="#字符串">#</a></h3>
+<p>Go语言中字符串内部实现使用<code>UTF-8</code>编码，字符串的值为双引号的内容。</p>
+<p>Go语言单引号包裹的是字符。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s1</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;嘻嘻&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s2</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#39;1&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s3</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#39;a&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s4</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#39;岳&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 字节：1字节 = 8Bit（8个二进制位）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 定义多行字符串，使用``
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">s5</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">`床前明月光
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">疑是地上霜
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">举头望明月
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">低头思故乡
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">`</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">s1</span>, <span style="color:#a6e22e">s2</span>, <span style="color:#a6e22e">s3</span>, <span style="color:#a6e22e">s4</span>, <span style="color:#a6e22e">s5</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="字符串操作">字符串操作<a hidden class="anchor" aria-hidden="true" href="#字符串操作">#</a></h4>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: center">功能</th>
+          <th style="text-align: center">方法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">求长度</td>
+          <td style="text-align: center">len（str）</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">拼接字符串</td>
+          <td style="text-align: center">加号或者fmt.Sprintf()</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">分割</td>
+          <td style="text-align: center">strings.Split</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">是否包含</td>
+          <td style="text-align: center">strings.contains</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">前后缀判断</td>
+          <td style="text-align: center">strings.HasPrefix/strings.HasSuffix</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">子串出现的位置</td>
+          <td style="text-align: center">strings.Index()/strings.LastIndex()</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">join操作</td>
+          <td style="text-align: center">strings.Join(a []string, sep string)</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="字符">字符<a hidden class="anchor" aria-hidden="true" href="#字符">#</a></h4>
+<p>组成字符串的元素称为<code>字符</code>，Go语言字符有两种：</p>
+<ol>
+<li><code>uint8</code>，或者叫<code>byte</code>类型，代表了ASCII码的一个字符</li>
+<li><code>rune</code>，代表一个<code>UTF-8</code>字符，当需要表示中文、日语或者其他复合字符时，就需要用到<code>rune</code>类型。<code>rune</code>类型实际上是一个<code>int32</code></li>
+</ol>
+<h4 id="修改字符串">修改字符串<a hidden class="anchor" aria-hidden="true" href="#修改字符串">#</a></h4>
+<p>字符串是无法直接修改的，如果修改，可以转换成字符切片</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s1</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;岳小杨超可爱&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s2</span> <span style="color:#f92672">:=</span> []rune(<span style="color:#a6e22e">s1</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s2</span>[<span style="color:#ae81ff">2</span>] = <span style="color:#e6db74">&#39;羊&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(string(<span style="color:#a6e22e">s2</span>)) <span style="color:#75715e">// 将s2强制转换成string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="复合数据类型">复合数据类型<a hidden class="anchor" aria-hidden="true" href="#复合数据类型">#</a></h2>
+<h3 id="数组">数组<a hidden class="anchor" aria-hidden="true" href="#数组">#</a></h3>
+<p>数组的长度是数组类型的一部分</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nums</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="初始化">初始化<a hidden class="anchor" aria-hidden="true" href="#初始化">#</a></h4>
+<p>如果不初始化，默认元素为零值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 方式一
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nums1</span> = [<span style="color:#ae81ff">4</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>} <span style="color:#75715e">// [1, 2, 3, 4]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 方式二
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nums2</span> = [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>} <span style="color:#75715e">// [1, 2, 3, 4]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 方式三
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nums3</span> = [<span style="color:#ae81ff">4</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>} <span style="color:#75715e">// [1, 2, 0, 0]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 方式四
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nums4</span> = [<span style="color:#ae81ff">4</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>: <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>: <span style="color:#ae81ff">4</span>} <span style="color:#75715e">// [1, 0, 0, 4]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums1</span>, <span style="color:#a6e22e">nums2</span>, <span style="color:#a6e22e">nums3</span>, <span style="color:#a6e22e">nums4</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="遍历">遍历<a hidden class="anchor" aria-hidden="true" href="#遍历">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">names</span> <span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;岳杨&#34;</span>, <span style="color:#e6db74">&#34;幂律&#34;</span>, <span style="color:#e6db74">&#34;GO语言&#34;</span>}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 方式一
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">names</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">names</span>[<span style="color:#a6e22e">i</span>])
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 方式二
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">names</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>数组是值类型</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 证明数组是值类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">nums1</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">nums1</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums2</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums1</span>, <span style="color:#a6e22e">nums2</span>) <span style="color:#75715e">// [1, 2, 3] [100, 2, 3]    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="切片">切片<a hidden class="anchor" aria-hidden="true" href="#切片">#</a></h3>
+<p>切片<code>Slice</code>是一个拥有相通类型元素的可变长度的序列</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nums1</span> []<span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nums2</span> []<span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">nums1</span> = []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums2</span> = []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums1</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">// false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums2</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span>) <span style="color:#75715e">// false    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h4 id="长度和容量">长度和容量<a hidden class="anchor" aria-hidden="true" href="#长度和容量">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums1</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">7</span>}           <span style="color:#75715e">// 切片
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">nums2</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">7</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>} <span style="color:#75715e">// 数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%d %d\n&#34;</span>, len(<span style="color:#a6e22e">nums1</span>), cap(<span style="color:#a6e22e">nums1</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%d %d\n&#34;</span>, len(<span style="color:#a6e22e">nums2</span>), cap(<span style="color:#a6e22e">nums2</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="由数组得到切片">由数组得到切片<a hidden class="anchor" aria-hidden="true" href="#由数组得到切片">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums1</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">7</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>} <span style="color:#75715e">// 数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">nums2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">nums1</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">4</span>]                  <span style="color:#75715e">// [0, 1, 2, 3] // 数组得到切片，左闭右开
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">nums3</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">nums1</span>[<span style="color:#ae81ff">1</span>:]
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums4</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">nums1</span>[:<span style="color:#ae81ff">4</span>]
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums5</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">nums1</span>[:]
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums1</span>, <span style="color:#a6e22e">nums2</span>, <span style="color:#a6e22e">nums3</span>, <span style="color:#a6e22e">nums4</span>, <span style="color:#a6e22e">nums5</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>1、切片是引用类型，真正的数组都是保存在底层的数组里。</p>
+<p>2、一个<code>nil</code>的切片是没有底层数组的。</p>
+<p>3、判断切片为空应该判断<code>len() == 0</code>。</p>
+<p>4、<code>nil</code>的切片就算没有底层数组，也可以进行<code>append</code>操作，<code>append</code>会自动为<code>nil</code>切片创建空间。</p>
+</blockquote>
+<h4 id="make函数">make函数<a hidden class="anchor" aria-hidden="true" href="#make函数">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums1</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>) <span style="color:#75715e">// 参数：切片类型，长度，容量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums1</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="append函数">append函数<a hidden class="anchor" aria-hidden="true" href="#append函数">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums1</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">nums1</span>[<span style="color:#ae81ff">3</span>] = <span style="color:#ae81ff">4</span> <span style="color:#75715e">// 错误写法，切片超过容量导致编译错误：索引越界
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">nums1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// append函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v %d %d&#34;</span>, <span style="color:#a6e22e">nums1</span>, len(<span style="color:#a6e22e">nums1</span>), cap(<span style="color:#a6e22e">nums1</span>)) <span style="color:#75715e">// [1, 2, 3] len=3 cap=3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">nums1</span> = append(<span style="color:#a6e22e">nums1</span>, <span style="color:#ae81ff">4</span>)                              <span style="color:#75715e">// 调用append函数必须用原来的切片变量接收返回值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v %d %d&#34;</span>, <span style="color:#a6e22e">nums1</span>, len(<span style="color:#a6e22e">nums1</span>), cap(<span style="color:#a6e22e">nums1</span>)) <span style="color:#75715e">// [1, 2, 3, 4] len=4 cap=6    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><blockquote>
+<p>调用<code>append</code>函数必须用原来的切片变量接收返回值，底层涉及到数组的重新分配内存空间</p>
+<p><code>append</code>函数会为空切片创建内存空间，并且会对容量不够的切片进行扩容操作</p>
+</blockquote>
+<h2 id="fmt包">fmt包<a hidden class="anchor" aria-hidden="true" href="#fmt包">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">num</span> = <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%T\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%b\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%d\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%o\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%x\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> = <span style="color:#e6db74">&#34;String&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">str</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%#v\n&#34;</span>, <span style="color:#a6e22e">num</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="流程控制">流程控制<a hidden class="anchor" aria-hidden="true" href="#流程控制">#</a></h2>
+<h3 id="if">if<a hidden class="anchor" aria-hidden="true" href="#if">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">expression</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 经典用法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">expression</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 执行操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 执行操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 特殊用法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">age</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">19</span>; <span style="color:#a6e22e">age</span> &gt; <span style="color:#ae81ff">18</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;青年&#34;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="for">for<a hidden class="anchor" aria-hidden="true" href="#for">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 执行操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">3</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">continue</span> <span style="color:#75715e">// 跳过for循环
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">6</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span> <span style="color:#75715e">// 跳出for循环
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">goto</span> <span style="color:#a6e22e">breakLabel</span> <span style="color:#75715e">// 跳出到标签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">breakLabel</span>: <span style="color:#75715e">// 标签
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;跳出来了，嘻嘻&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="for-range">for range<a hidden class="anchor" aria-hidden="true" href="#for-range">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;yueyang&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">s</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%d, %c\n&#34;</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">c</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="switch">switch<a hidden class="anchor" aria-hidden="true" href="#switch">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">str</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;0&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">str</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;0&#34;</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;1&#34;</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 操作    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">str</span> = <span style="color:#e6db74">&#34;1&#34;</span>; <span style="color:#a6e22e">str</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;0&#34;</span>, <span style="color:#e6db74">&#34;1&#34;</span>, <span style="color:#e6db74">&#34;2&#34;</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">fallthrough</span> <span style="color:#75715e">// 向下穿透一个
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;3&#34;</span>, <span style="color:#e6db74">&#34;4&#34;</span>, <span style="color:#e6db74">&#34;5&#34;</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 操作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="运算符">运算符<a hidden class="anchor" aria-hidden="true" href="#运算符">#</a></h2>
+<p><code>&amp;</code>按位与</p>
+<p><code>|</code>按位或</p>
+<p><code>^</code>按位异或</p>
+<p><code>&lt;&lt;</code>左移</p>
+<p><code>&gt;&gt;</code>右移</p>
+<h2 id="指针">指针<a hidden class="anchor" aria-hidden="true" href="#指针">#</a></h2>
+<p>取地址操作符<code>&amp;</code></p>
+<p>取值操作符<code>*</code></p>
+<p>注意事项：</p>
+<ul>
+<li>引用类型变量不仅要声明还要分配内存空间</li>
+</ul>
+<p>那么就引入了两个初始化方式<code>new</code> <code>make</code></p>
+<h3 id="new函数">new函数<a hidden class="anchor" aria-hidden="true" href="#new函数">#</a></h3>
+<p><code>new</code>函数不太常用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> new(<span style="color:#a6e22e">T</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">T</span> <span style="color:#75715e">// 接收一个类型，返回该类型的指针
+</span></span></span></code></pre></div><h3 id="make函数-1">make函数<a hidden class="anchor" aria-hidden="true" href="#make函数-1">#</a></h3>
+<p>make也是用于内存分配的，区别于new，make函数只作用于slice、map、chan类型的内存创建，由于这些类型本身就是引用类型，make返回的就是类型本身。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> make(<span style="color:#a6e22e">t</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">size</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">string</span> <span style="color:#75715e">// 接收一个类型和容量大小，返回类型本身
+</span></span></span></code></pre></div><p>make函数是不可替代的函数，slice、map、chan都需要make函数初始化才能进行操作。</p>
+<h3 id="new和make">new和make<a hidden class="anchor" aria-hidden="true" href="#new和make">#</a></h3>
+<ol>
+<li>两者都是用来创建内存的</li>
+<li>new用于类型的内存分配，内存对应的值为类型的零值，返回的是指向类型的指针</li>
+<li>make作用于slice、map、chan类型，返回类型本身</li>
+</ol>
+<h2 id="结构体">结构体<a hidden class="anchor" aria-hidden="true" href="#结构体">#</a></h2>
+<h3 id="自定义类型">自定义类型<a hidden class="anchor" aria-hidden="true" href="#自定义类型">#</a></h3>
+<p>类型定义和类型别名</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// NewInt 类型定义
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">NewInt</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// MyInt 类型别名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MyInt</span> = <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">NewInt</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#a6e22e">MyInt</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;%T&#34;</span>, <span style="color:#a6e22e">a</span>) <span style="color:#75715e">// main.NewInt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;%T&#34;</span>, <span style="color:#a6e22e">b</span>) <span style="color:#75715e">// int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="结构体-1">结构体<a hidden class="anchor" aria-hidden="true" href="#结构体-1">#</a></h3>
+<p>Go语言通过<code>struct</code>来面向对象</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">T</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Id</span>   <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="结构体实例化">结构体实例化<a hidden class="anchor" aria-hidden="true" href="#结构体实例化">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">age</span>  <span style="color:#66d9ef">int8</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">person</span> <span style="color:#a6e22e">Person</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;yueyang&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">age</span> = <span style="color:#ae81ff">24</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">person</span>)  <span style="color:#75715e">// {yueyang, 24}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%#v\n&#34;</span>, <span style="color:#a6e22e">person</span>) <span style="color:#75715e">// main.Person{name:&#34;yueyang&#34;, age:24}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="匿名结构体">匿名结构体<a hidden class="anchor" aria-hidden="true" href="#匿名结构体">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">user</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Age</span>  <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">Name</span> = <span style="color:#e6db74">&#34;yueyang&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">Age</span> = <span style="color:#ae81ff">24</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%#v\n&#34;</span>, <span style="color:#a6e22e">user</span>) <span style="color:#75715e">// struct { Name string; Age int }{Name:&#34;yueyang&#34;, Age:24}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="结构体指针">结构体指针<a hidden class="anchor" aria-hidden="true" href="#结构体指针">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">person</span> = new(<span style="color:#a6e22e">Person</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%+v&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">person</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="2golang标准库">2、Golang标准库<a hidden class="anchor" aria-hidden="true" href="#2golang标准库">#</a></h1>
+<h2 id="strconv">strconv<a hidden class="anchor" aria-hidden="true" href="#strconv">#</a></h2>
+<h3 id="atoi">Atoi()<a hidden class="anchor" aria-hidden="true" href="#atoi">#</a></h3>
+<blockquote>
+<p>将字符串转换成整形</p>
+</blockquote>
+<h3 id="itoa">Itoa()<a hidden class="anchor" aria-hidden="true" href="#itoa">#</a></h3>
+<blockquote>
+<p>将整形转换成字符串</p>
+</blockquote>
+<h3 id="parsebool">ParseBool()<a hidden class="anchor" aria-hidden="true" href="#parsebool">#</a></h3>
+<blockquote>
+<p>解析字符串成布尔类型, 可以接受1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False; 否则返回错误</p>
+</blockquote>
+<h3 id="parseint">ParseInt()<a hidden class="anchor" aria-hidden="true" href="#parseint">#</a></h3>
+<h3 id="parseunit">ParseUnit()<a hidden class="anchor" aria-hidden="true" href="#parseunit">#</a></h3>
+<blockquote>
+<p>类似于ParseInt(), 区别在于不能接受正负号, 返回uint</p>
+</blockquote>
+<h3 id="parsefloat">ParseFloat()<a hidden class="anchor" aria-hidden="true" href="#parsefloat">#</a></h3>
+<h3 id="formatbool">FormatBool()<a hidden class="anchor" aria-hidden="true" href="#formatbool">#</a></h3>
+<h3 id="formatint">FormatInt()<a hidden class="anchor" aria-hidden="true" href="#formatint">#</a></h3>
+<h3 id="formatuint">FormatUint()<a hidden class="anchor" aria-hidden="true" href="#formatuint">#</a></h3>
+<h3 id="formatfloat">FormatFloat()<a hidden class="anchor" aria-hidden="true" href="#formatfloat">#</a></h3>
+<h1 id="3异常机制">3、异常机制<a hidden class="anchor" aria-hidden="true" href="#3异常机制">#</a></h1>
+<blockquote>
+<p>go中追求简洁优雅，使用多返回值来返回错误解决异常情况。只有在除数为零时，才会真正的使用异常机制，<code>defer</code>、<code>panic</code>、<code>recover</code></p>
+</blockquote>
+<p>底层实现看<a href="https://blog.csdn.net/shidantong/article/details/106341159">这篇文章</a></p>
+<blockquote>
+<p>调用 defer 关键字会立刻对函数中引用的外部参数进行拷贝</p>
+</blockquote>
+<h1 id="4golang第三方包">4、Golang第三方包<a hidden class="anchor" aria-hidden="true" href="#4golang第三方包">#</a></h1>
+<h2 id="githubcomgin-gonicgin">github.com/gin-gonic/gin<a hidden class="anchor" aria-hidden="true" href="#githubcomgin-gonicgin">#</a></h2>
+<p>gin包提供golang一个基本web框架</p>
+<p>gin.Context实现了Golang标准库中的net/http下Handler接口中的唯一方法ServeHttp(ReponseWriter, *Request)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">http</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// A Handler responds to an HTTP request.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// ServeHTTP should write reply headers and data to the ResponseWriter
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// and then return. Returning signals that the request is finished; it
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// is not valid to use the ResponseWriter or read from the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Request.Body after or concurrently with the completion of the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// ServeHTTP call.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Depending on the HTTP client software, HTTP protocol version, and
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// any intermediaries between the client and the Go server, it may not
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// be possible to read from the Request.Body after writing to the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// ResponseWriter. Cautious handlers should read the Request.Body
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// first, and then reply.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Except for reading the body, handlers should not modify the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// provided Request.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// If ServeHTTP panics, the server (the caller of ServeHTTP) assumes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// that the effect of the panic was isolated to the active request.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// It recovers the panic, logs a stack trace to the server error log,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// and either closes the network connection or sends an HTTP/2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// RST_STREAM, depending on the HTTP protocol. To abort a handler so
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// the client sees an interrupted response but the server doesn&#39;t log
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// an error, panic with the value ErrAbortHandler.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Handler</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ServeHTTP</span>(<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">Request</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ResponseWriter</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Request</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>这是 Golang 实现 WebService 最基础的接口，通过实现其方法来</p>
+<h1 id="golang-的编译过程">Golang 的编译过程<a hidden class="anchor" aria-hidden="true" href="#golang-的编译过程">#</a></h1>
+<ol>
+<li>词法和语法分析：编译器读入源代码文件，对代码进行分词和语法分析，生成语法树的数据结构。</li>
+<li>AST 转换：编译器会对语法树进行一些处理和转换，例如检查类型、解析函数调用等，在此过程中还会对代码进行优化。</li>
+<li>代码生成：将转换后的语法树转换成机器码或字节码，并将其打包成可执行文件或库文件。</li>
+<li>链接：链接器将被引用的库文件链接到目标程序中，生成最终的可执行文件。在 Golang 中，链接过程是由 go 工具自动完成的，开发人员无需显式执行链接命令。</li>
+</ol>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/learn4git/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Learn4git</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">卷毛的博客</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

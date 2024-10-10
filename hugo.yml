@@ -1,4 +1,4 @@
-baseURL: 'https://example.org/'
+baseURL: 'https://yuey4n9.github.io'
 languageCode: 'zh-CN'
 title: '卷毛的博客'
 theme: 'papermod'
@@ -9,7 +9,7 @@ params:
   profileMode:
     enabled: true
     title: '一只卷毛怪的程序人生' # optional default will be site title
-    subtitle: "This is profileMode subtitle"
+    subtitle: "A Coder for life, one code to change life"
     imageUrl: "https://avatars.githubusercontent.com/u/42286278?v=4" # optional
     imageWidth: 100 # custom size
     imageHeight: 100 # custom size
