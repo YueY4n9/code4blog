@@ -50,32 +50,219 @@
     <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       Learn4mysql
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
     </h1>
-    <div class="post-meta"><span title='2024-10-10 14:56:42 +0800 CST'>2024年10月10日14:56:42</span>&nbsp;·&nbsp;0 min
+    <div class="post-meta"><span title='2021-05-31 14:56:42 +0800 CST'>2021年5月31日14:56:42</span>&nbsp;·&nbsp;2 min
 
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
 
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%89%8d%e8%a8%80" aria-label="前言">前言</a></li>
+                <li>
+                    <a href="#select%e8%af%ad%e5%8f%a5%e8%af%ad%e6%b3%95%e9%a1%ba%e5%ba%8f" aria-label="SELECT语句——语法顺序">SELECT语句——语法顺序</a></li>
+                <li>
+                    <a href="#select%e8%af%ad%e5%8f%a5%e6%89%a7%e8%a1%8c%e9%a1%ba%e5%ba%8f" aria-label="SELECT语句——执行顺序">SELECT语句——执行顺序</a></li>
+                <li>
+                    <a href="#sql%e4%bc%98%e5%8c%96%e7%ad%96%e7%95%a5" aria-label="SQL优化策略">SQL优化策略</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#%e4%b8%80%e9%81%bf%e5%85%8d%e4%b8%8d%e8%b5%b0%e7%b4%a2%e5%bc%95%e7%9a%84%e5%9c%ba%e6%99%af" aria-label="一、避免不走索引的场景">一、避免不走索引的场景</a></li>
+                <li>
+                    <a href="#%e4%ba%8cselect-%e8%af%ad%e5%8f%a5%e4%bc%98%e5%8c%96" aria-label="二、SELECT 语句优化">二、SELECT 语句优化</a></li>
+                <li>
+                    <a href="#%e4%b8%89dml-%e8%af%ad%e5%8f%a5%e4%bc%98%e5%8c%96" aria-label="三、DML 语句优化">三、DML 语句优化</a></li>
+                <li>
+                    <a href="#%e5%9b%9b%e6%9f%a5%e8%af%a2%e6%9d%a1%e4%bb%b6%e4%bc%98%e5%8c%96" aria-label="四、查询条件优化">四、查询条件优化</a></li>
+                <li>
+                    <a href="#%e4%ba%94%e5%bb%ba%e8%a1%a8%e4%bc%98%e5%8c%96" aria-label="五、建表优化">五、建表优化</a></li>
+                <li>
+                    <a href="#%e5%85%ad%e4%ba%8b%e5%8a%a1%e4%bc%98%e5%8c%96" aria-label="六、事务优化">六、事务优化</a></li></ul>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#%e6%a6%82%e5%bf%b5" aria-label="概念">概念</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h1>
+<p>SQL优化一般遵循五个原则：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>减少数据访问
+</span></span><span style="display:flex;"><span>返回更少的数据：只返回需要的字段和数据分页处理，减少磁盘IO和网络IO
+</span></span><span style="display:flex;"><span>减少交互次数：批量DML操作，来减少与数据库的交互次数
+</span></span><span style="display:flex;"><span>减少服务器CPU开销：减少数据库排序操作以及全表查询，减少CPU内存占用
+</span></span><span style="display:flex;"><span>利用更多资源：使用表分区，增加并行操作，最大限度使用CPU资源
+</span></span></code></pre></div><p>总结一下就是</p>
+<blockquote>
+<ul>
+<li>最大化利用索</li>
+<li>尽可能避免全表扫描</li>
+<li>减少无效数据的查询</li>
+</ul>
+</blockquote>
+<h1 id="select语句语法顺序">SELECT语句——语法顺序<a hidden class="anchor" aria-hidden="true" href="#select语句语法顺序">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> <span style="color:#66d9ef">distinct</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">查询字段</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">表名</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">left</span> <span style="color:#f92672">/</span> <span style="color:#66d9ef">right</span> <span style="color:#66d9ef">join</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">表名</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">条件</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">条件</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">分组字段</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">having</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">分组条件</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">排序字段</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">limit</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">参数</span><span style="color:#ae81ff">1</span>, <span style="color:#960050;background-color:#1e0010">参数</span><span style="color:#ae81ff">2</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><h1 id="select语句执行顺序">SELECT语句——执行顺序<a hidden class="anchor" aria-hidden="true" href="#select语句执行顺序">#</a></h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">from</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">表名</span><span style="color:#f92672">&gt;</span> <span style="color:#75715e">-- 选取表, 如果是多个表通过笛卡尔积形成一个表
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">on</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">条件</span><span style="color:#f92672">&gt;</span> <span style="color:#75715e">-- 对from的表进行筛选
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">join</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">表名</span><span style="color:#f92672">&gt;</span> <span style="color:#75715e">-- 添加字段到on之后的结果中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">where</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">条件</span><span style="color:#f92672">&gt;</span> <span style="color:#75715e">-- 对结果再进行筛选
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">分组字段</span><span style="color:#f92672">&gt;</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">having</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">分组条件</span><span style="color:#f92672">&gt;</span> <span style="color:#75715e">-- 对分组之后的结果再进行筛选
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">字段</span><span style="color:#f92672">&gt;</span> <span style="color:#75715e">-- 筛选列, 返回的单列必须在group by中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">distinct</span>  <span style="color:#75715e">-- 数据去重
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">order</span> <span style="color:#66d9ef">by</span> <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">排序字段</span><span style="color:#f92672">&gt;</span> <span style="color:#75715e">-- 排序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">limit</span> <span style="color:#75715e">-- 行数限制
+</span></span></span></code></pre></div><h1 id="sql优化策略">SQL优化策略<a hidden class="anchor" aria-hidden="true" href="#sql优化策略">#</a></h1>
+<h3 id="一避免不走索引的场景">一、避免不走索引的场景<a hidden class="anchor" aria-hidden="true" href="#一避免不走索引的场景">#</a></h3>
+<ol>
+<li>
+<p>避免在<code>字段开头模糊查询</code>，会放弃索引而全表扫描</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 尽量避免
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%岳%&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 优化方式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> name <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;岳%&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 如果必须要在字段开头模糊查询, 建议使用以下策略:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 1. 使用FullText全文检索
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 2. 数据量较大时使用ElasticSearch
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 3. 使用MySQL内置函数INSTR(str,substr)来匹配
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 4. 如果数据量少, 就不用花里胡哨的使用策略了, 直接%%
+</span></span></span></code></pre></div></li>
+<li>
+<p>避免使用<code>or</code>，会放弃索引而全表扫描</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 不推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;yueyang&#39;</span> <span style="color:#66d9ef">or</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mengwu&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;yueyang&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">union</span> <span style="color:#66d9ef">all</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mengwu&#39;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>避免<code>进行null值判断</code>，会放弃索引而全表扫描</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 不推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> score <span style="color:#66d9ef">is</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 优化方式:给字段设置默认值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div></li>
+<li>
+<p>避免<code>在where条件等号左侧使用表达式</code>，会放弃索引而全表扫描</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 不推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> score<span style="color:#f92672">/</span><span style="color:#ae81ff">10</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 优化方式:把左侧表达式的操作移到右侧
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">where</span> score <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="二select-语句优化">二、SELECT 语句优化<a hidden class="anchor" aria-hidden="true" href="#二select-语句优化">#</a></h3>
+<ol>
+<li>
+<p>禁止出现<code>select *</code>，需要哪些字段必须明确标明， 原因是：</p>
+<ol>
+<li>增加了查询分析器解析成本</li>
+<li>容易与resultMap配置不一致</li>
+<li>无用字段增加了网络IO</li>
+</ol>
+</li>
+<li>
+<p>多表关联查询时，小表在前，大表在后</p>
+<p>多表关联查询会全表扫描第一张表，所以第一张表尽可能小会提升不少性能</p>
+</li>
+<li>
+<p>使用表的别名</p>
+<p>SQL连接多个表时，使用表的别名并用表的别名来指定字段会减少解析时间</p>
+</li>
+</ol>
+<h3 id="三dml-语句优化">三、DML 语句优化<a hidden class="anchor" aria-hidden="true" href="#三dml-语句优化">#</a></h3>
+<ol>
+<li>
+<p>批量<code>insert</code>数据使用<code>insert</code>多个值的方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 不推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#66d9ef">user</span> (id, name, age) <span style="color:#66d9ef">values</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;yueyang&#39;</span>, <span style="color:#ae81ff">18</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#66d9ef">user</span> (id, name, age) <span style="color:#66d9ef">values</span> (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;mengwu&#39;</span>, <span style="color:#ae81ff">19</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#66d9ef">user</span> (id, name, age) <span style="color:#66d9ef">values</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;yueyang&#39;</span>, <span style="color:#ae81ff">18</span>),(<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;mengwu&#39;</span>, <span style="color:#ae81ff">19</span>);
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="四查询条件优化">四、查询条件优化<a hidden class="anchor" aria-hidden="true" href="#四查询条件优化">#</a></h3>
+<ol>
+<li>
+<p>对于复杂查询，使用中间表暂存数据</p>
+</li>
+<li>
+<p>优化<code>group by</code>语句</p>
+<p>默认情况下, MySQL会对<code>group by</code>中所有的值进行排序，也就相当于在后面添加了一段<code>order by</code></p>
+<p>因此，查询<code>group by</code>如果你不想对分组数据进行排序，可以在最后加上<code>order by null</code></p>
+</li>
+<li>
+<p>优化<code>join</code>语句</p>
+<p>对于逻辑顺畅的子查询来说，有时使用<code>join</code>替代会有更好的效率</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询没有成绩的学生ID
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">not</span> <span style="color:#66d9ef">in</span>(<span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> grade <span style="color:#66d9ef">where</span> score <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 优化方式:减少了内存创建临时表的损耗 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> id <span style="color:#66d9ef">from</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">left</span> <span style="color:#66d9ef">join</span> grade <span style="color:#66d9ef">on</span> <span style="color:#66d9ef">user</span>.id <span style="color:#f92672">=</span> grade.id <span style="color:#66d9ef">where</span> grade.socre <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span></code></pre></div></li>
+<li>
+<p>优化<code>union</code>语句</p>
+<p>MySQL通过创建临时表并填充临时表的方式来执行<code>union</code>查询。</p>
+<p>使用<code>union</code>时，会隐式的给临时表加<code>distinct</code>
+，从而对整个临时表做唯一性校验，非常损耗性能。因此如果不是非要去重，非常不建议使用<code>union</code>
+，建议改成<code>union all</code>。</p>
+</li>
+<li>
+<p>合理的分页方式进行分页优化（^_^这个地方我还没学会呢，大家自己去研究深入一下，欢迎给我留言）</p>
+</li>
+</ol>
+<h3 id="五建表优化">五、建表优化<a hidden class="anchor" aria-hidden="true" href="#五建表优化">#</a></h3>
+<ol>
+<li>
+<p>在表中建立<code>索引</code>，优先考虑<code>where</code>、<code>order by</code>使用到的字段。</p>
+</li>
+<li>
+<p>尽量使用数字型字段</p>
+<p>举个例子：性别男（1）女（2），就不要设计成字符型字段，会增加查询和连接性能，并增加存储开销</p>
+</li>
+</ol>
+<h3 id="六事务优化">六、事务优化<a hidden class="anchor" aria-hidden="true" href="#六事务优化">#</a></h3>
+<ol>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mysql" data-lang="mysql"><span style="display:flex;"><span><span style="color:#75715e">-- 查询事务执行的锁情况
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> INFORMATION_SCHEMA.INNODB_TRX;
+</span></span></code></pre></div></li>
+</ol>
+<h1 id="概念">概念<a hidden class="anchor" aria-hidden="true" href="#概念">#</a></h1>
+<p>MVCC: 多版本并发控制技术的英文全称是 Multiversion Concurrency Control，简称 MVCC。</p>
+<p>多版本并发控制（MVCC） 是通过保存数据在某个时间点的快照来实现并发控制的。也就是说，不管事务执行多长时间，事务内部看到的数据是不受其它事务影响的，根据事务开始的时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。</p>
+
+  </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/posts/learn4mongo/">
+  <a class="prev" href="http://localhost:1313/posts/learn4go/">
     <span class="title">« Prev</span>
     <br>
-    <span>Learn4mongo</span>
+    <span>Learn4go</span>
   </a>
-  <a class="next" href="http://localhost:1313/posts/learn4vim/">
+  <a class="next" href="http://localhost:1313/posts/learn4redis/">
     <span class="title">Next »</span>
     <br>
-    <span>Learn4vim</span>
+    <span>Learn4redis</span>
   </a>
 </nav>
 

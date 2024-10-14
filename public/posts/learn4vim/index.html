@@ -7,7 +7,9 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Learn4vim | 卷毛的博客</title>
 <meta name="keywords" content="">
-<meta name="description" content="Learn4vim - 卷毛的博客">
+<meta name="description" content="
+整理 vim ide 的新手学习过程
+">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/posts/learn4vim/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
@@ -50,32 +52,166 @@
     <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
     <h1 class="post-title entry-hint-parent">
       Learn4vim
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
     </h1>
-    <div class="post-meta"><span title='2024-10-10 14:56:19 +0800 CST'>2024年10月10日14:56:19</span>&nbsp;·&nbsp;0 min
+    <div class="post-meta"><span title='2022-10-01 14:56:19 +0800 CST'>2022年10月1日14:56:19</span>&nbsp;·&nbsp;1 min
 
 </div>
-  </header> 
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
 
+        <div class="inner"><ul>
+                <li>
+                    <a href="#vim" aria-label="vim">vim</a><ul>
+                        
+                <li>
+                    <a href="#%e4%b8%80%e8%88%ac%e6%a8%a1%e5%bc%8f%e5%8f%af%e7%94%a8%e7%9a%84%e6%8c%89%e9%92%ae%e8%af%b4%e6%98%8e" aria-label="一般模式可用的按钮说明">一般模式可用的按钮说明</a><ul>
+                        
+                <li>
+                    <a href="#%e7%a7%bb%e5%8a%a8%e5%85%89%e6%a0%87" aria-label="移动光标">移动光标</a></li>
+                <li>
+                    <a href="#%e6%9f%a5%e6%89%be%e4%b8%8e%e6%9b%bf%e6%8d%a2" aria-label="查找与替换">查找与替换</a></li>
+                <li>
+                    <a href="#%e5%88%a0%e9%99%a4%e5%a4%8d%e5%88%b6%e4%b8%8e%e7%b2%98%e8%b4%b4" aria-label="删除、复制与粘贴">删除、复制与粘贴</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%b8%80%e8%88%ac%e6%a8%a1%e5%bc%8f%e5%88%87%e6%8d%a2%e5%88%b0%e7%bc%96%e8%be%91%e6%a8%a1%e5%bc%8f%e7%9a%84%e5%8f%af%e7%94%a8%e7%9a%84%e6%8c%89%e9%92%ae%e8%af%b4%e6%98%8e" aria-label="一般模式切换到编辑模式的可用的按钮说明">一般模式切换到编辑模式的可用的按钮说明</a></li>
+                <li>
+                    <a href="#%e4%b8%80%e8%88%ac%e6%a8%a1%e5%bc%8f%e5%88%87%e6%8d%a2%e5%88%b0%e5%91%bd%e4%bb%a4%e8%a1%8c%e6%a8%a1%e5%bc%8f%e5%8f%af%e7%94%a8%e7%9a%84%e6%8c%89%e9%92%ae%e8%af%b4%e6%98%8e" aria-label="一般模式切换到命令行模式可用的按钮说明">一般模式切换到命令行模式可用的按钮说明</a></li></ul>
+                </li>
+                <li>
+                    <a href="#vim-plugins" aria-label="vim plugins">vim plugins</a><ul>
+                        
+                <li>
+                    <a href="#nerdtree" aria-label="nerdtree">nerdtree</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p>整理 vim ide 的新手学习过程</p>
+</blockquote>
+<h1 id="vim">vim<a hidden class="anchor" aria-hidden="true" href="#vim">#</a></h1>
+<h2 id="一般模式可用的按钮说明">一般模式可用的按钮说明<a hidden class="anchor" aria-hidden="true" href="#一般模式可用的按钮说明">#</a></h2>
+<h3 id="移动光标">移动光标<a hidden class="anchor" aria-hidden="true" href="#移动光标">#</a></h3>
+<p>「h、j、k、l」分别控制光标左、下、上、右移一格
+「ctrl+b」屏幕往&quot;后&quot;移动一页
+「ctrl+f」屏幕往&quot;前&quot;移动一页
+「n<!-- raw HTML omitted -->」光标向右移动n个字符
+「Home」移动到这一行的最前面字符处:0数字，但不能用数字小键盘上的数字
+「End」移动到这一行的最后面字符处:$，我测试好像不行
+「w」光标跳到下个字的开头
+「e」光标跳到下个字的字尾
+「H」光标移动到这个屏幕的最上方那一行的第一个字符
+「M」光标移动到这个屏幕的中间那一行的第一个字符
+「L」光标移动到这个屏幕的最下方那一行的第一个字符
+「G」移动到这个文件的最后一行
+「nG」移动到这个文件的第n行(可配合:set nu)
+「gg」移动到这个文件的第一行，相当于1G
+「n<!-- raw HTML omitted -->」光标向下移动n行</p>
+<h3 id="查找与替换">查找与替换<a hidden class="anchor" aria-hidden="true" href="#查找与替换">#</a></h3>
+<p>「/word」向光标向下寻找一个名称为word的字符串
+「?word」向光标向上寻找一个名称为word的字符串
+「n」代表重复前一个查找的动作
+「N」与n刚好相反，为「反向」进行行前一个查找动作
+「:n1,n2s/word1/word2/g」n1与n2为数字，在第n1与n2行之间查找word1 这个字符串，并将该字符串替换为word2
+「:1,$s/word1/word2/g」从第一行到最后一行查找word1字符串，并将该字符串替换为word2
+「:1,$s/word1/word2/gc」从第一行到最后一行查找word1字符串，并将该字符串替换为word2 ，且在替换前提示用户确认是否进行替换</p>
+<h3 id="删除复制与粘贴">删除、复制与粘贴<a hidden class="anchor" aria-hidden="true" href="#删除复制与粘贴">#</a></h3>
+<p>「x」为向后删除一个字符 (相当于「del」键)
+「X」为向前删除一个字符(相当于「backspace」键)
+「nx」连续向后删除n个字符
+「dd」删除光标所在行
+「ndd」删除光标所在的向下n行
+「d1G」删除光标所在行到第一行的所有数据
+「dG」删除光标所在到最后一行的所有数据
+「d$」删除光标所在处，到该行的最后一个字符
+「d0」删除光标所在处，到该行的最前一个字符
+「yy」复制光标所在的那一行
+「nyy」复制光标所在的向下n列
+「y1G」复制光标所在行到第一行的所有数据
+「yG」复制光标所在行到最后一行的所有数据
+「y0」复制光标所在的那个字符到该行行首的所有数据
+「y$」复制光标所在的那个字符到该行行尾的所有数据
+「p」将已复制的数据在光标下一行粘贴上
+「P」则为贴在光标的上一行
+「u」恢复前一个操作
+「Ctrl+r」重做上一个操作
+「.」是重复前一个操作</p>
+<h2 id="一般模式切换到编辑模式的可用的按钮说明">一般模式切换到编辑模式的可用的按钮说明<a hidden class="anchor" aria-hidden="true" href="#一般模式切换到编辑模式的可用的按钮说明">#</a></h2>
+<p>「i, I」进入编辑模式：</p>
+<ul>
+<li>i 为「从目前光标所在处插入」</li>
+<li>I 为「在目前所在行的第一个非空格符处开始插入」
+「a, A」进入编辑模式(Insert mode)：</li>
+<li>a 为「从目前光标所在的下一个字符处开始插入」</li>
+<li>A 为「从光标所在行的最后一个字符处开始插入」
+「o, O」进入编辑模式：</li>
+<li>o 为「在目前光标所在的下一行处插入新的一行」</li>
+<li>O 为在目前光标所在处的上一行插入新的一行
+「r, R」进入取代模式：</li>
+<li>r 只会取代光标所在的那一个字符一次</li>
+<li>R会一直取代光标所在的文字，直到按下 ESC 为止；
+「Esc」退出编辑模式，回到一般模式</li>
+</ul>
+<h2 id="一般模式切换到命令行模式可用的按钮说明">一般模式切换到命令行模式可用的按钮说明<a hidden class="anchor" aria-hidden="true" href="#一般模式切换到命令行模式可用的按钮说明">#</a></h2>
+<p>「:w」保存编辑的内容
+「:w!」强制写入该文件，但跟你对该文件的权限有关
+「:q」离开vi
+「:q!」不想保存修改强制离开
+「:wq」保存后离开
+「:x」保存后离开
+「ZZ」若文件没有更动，则不保存离开，若文件已经被更改过，则保存后离开
+「:w filename」将编辑的数据保存成另一个文件（类似另存）
+「:r filename」在编辑的数据中，读入另一个文件的数据。即将「filename」这个文件的内容加到光标所在行后面。
+「:n1,n2 w filename」将n1到n2的内容保存成filename这个文件。
+「:! command」暂时离开vi 到命令行模式下执行command的显示结果！例如 「:! ls /home」即可在 vi 当中察看/home底下以ls输出的文件信息！
+「:set nu」显示行号
+「:set nonu」与 set nu 相反，为取消行</p>
+<h1 id="vim-plugins">vim plugins<a hidden class="anchor" aria-hidden="true" href="#vim-plugins">#</a></h1>
+<h2 id="nerdtree">nerdtree<a hidden class="anchor" aria-hidden="true" href="#nerdtree">#</a></h2>
+<p>「ctrl+w+r」切换当前窗口左右布局
+「ctrl」+p 模糊搜索文件
+「gT」切换到前一个tabgT
+「gt」切换到后一个tab
+「o」打开关闭文件或者目录，如果是文件的话，光标出现在打开的文件中
+「O」打开结点下的所有目录
+「X」合拢当前结点的所有目录
+「x」合拢当前结点的父目录
+「i」水平分割窗口打开文件
+「s」纵向分割窗口打开文件
+「u」打开上层目录
+「t」在标签页中打开
+「T」在后台标签页中打开
+「p」到上层目录
+「P」到根目录
+「K」到同目录第一个节点
+「J」到同目录最后一个节点
+「m」显示文件系统菜单（添加、删除、移动操作）
+「?」帮助
+「:q」关闭</p>
+
+  </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="http://localhost:1313/posts/learn4mysql/">
+  <a class="prev" href="http://localhost:1313/posts/learn4mongo/">
     <span class="title">« Prev</span>
     <br>
-    <span>Learn4mysql</span>
+    <span>Learn4mongo</span>
   </a>
-  <a class="next" href="http://localhost:1313/posts/learn4redis/">
+  <a class="next" href="http://localhost:1313/posts/learn4linux/">
     <span class="title">Next »</span>
     <br>
-    <span>Learn4redis</span>
+    <span>Learn4linux</span>
   </a>
 </nav>
 

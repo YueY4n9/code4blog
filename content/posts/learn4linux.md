@@ -1,7 +1,7 @@
 +++
 title = 'Learn4linux'
 date = 2022-05-01T17:14:02+08:00
-draft = true
+draft = false
 +++
 
 > 整理 linux 的学习过程, 尝试通过单词全拼来理解命令含义
