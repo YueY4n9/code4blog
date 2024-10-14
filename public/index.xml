@@ -6,8 +6,60 @@
     <description>Recent content on 卷毛的博客</description>
     <generator>Hugo -- 0.135.0</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 16 Jun 2021 22:18:18 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 10 Oct 2024 14:56:54 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learn4mongo</title>
+      <link>http://localhost:1313/posts/learn4mongo/</link>
+      <pubDate>Thu, 10 Oct 2024 14:56:54 +0800</pubDate>
+      <guid>http://localhost:1313/posts/learn4mongo/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;title: learn4mongo
+date: 2020-08-27 16:29:24
+categories:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;笔记
+tags:
+&lt;ul&gt;
+&lt;li&gt;mongo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;MongoDB的一些基本操作，只适用于日常开发，深入了解MongoDB请略过本文&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Learn4mysql</title>
+      <link>http://localhost:1313/posts/learn4mysql/</link>
+      <pubDate>Thu, 10 Oct 2024 14:56:42 +0800</pubDate>
+      <guid>http://localhost:1313/posts/learn4mysql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Learn4vim</title>
+      <link>http://localhost:1313/posts/learn4vim/</link>
+      <pubDate>Thu, 10 Oct 2024 14:56:19 +0800</pubDate>
+      <guid>http://localhost:1313/posts/learn4vim/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Learn4redis</title>
+      <link>http://localhost:1313/posts/learn4redis/</link>
+      <pubDate>Thu, 10 Oct 2024 14:56:06 +0800</pubDate>
+      <guid>http://localhost:1313/posts/learn4redis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Learn4linux</title>
+      <link>http://localhost:1313/posts/learn4linux/</link>
+      <pubDate>Sun, 01 May 2022 17:14:02 +0800</pubDate>
+      <guid>http://localhost:1313/posts/learn4linux/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;整理 linux 的学习过程, 尝试通过单词全拼来理解命令含义&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
     <item>
       <title>Learn4go</title>
       <link>http://localhost:1313/posts/learn4go/</link>

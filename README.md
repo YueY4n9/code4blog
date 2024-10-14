@@ -1,2 +1,4 @@
 # code4blog
-my blog by hugo
+YueYang`blog by hugo
+
+https://yuey4n9.github.io/

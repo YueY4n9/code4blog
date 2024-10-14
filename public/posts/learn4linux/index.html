@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learn4linux | 卷毛的博客</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+整理 linux 的学习过程, 尝试通过单词全拼来理解命令含义
+">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/learn4linux/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/learn4linux/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class=" dark" id="top">
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="卷毛的博客 (Alt + H)">卷毛的博客</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Learn4linux
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path
+            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+        </svg>
+      </span>
+    </h1>
+    <div class="post-meta"><span title='2022-05-01 17:14:02 +0800 CST'>2022年5月1日17:14:02</span>&nbsp;·&nbsp;5 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e5%91%bd%e4%bb%a4" aria-label="命令">命令</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><blockquote>
+<p>整理 linux 的学习过程, 尝试通过单词全拼来理解命令含义</p>
+</blockquote>
+<h1 id="命令">命令<a hidden class="anchor" aria-hidden="true" href="#命令">#</a></h1>
+<ol>
+<li>cal = CALendar calendar 日历</li>
+<li>cat = CATenate 链接 <code>该更多的情况是将文件内容输出以及合并多个文件内容</code></li>
+<li>cd = Change Directory 更改目录</li>
+<li>chgrp = CHange GRouP 改变组</li>
+<li>chmod = CHange MODe 改变模式</li>
+<li>chown = CHange OWNer 更改所有者</li>
+<li>chsh = CHange SHell 更改壳</li>
+<li>cmp = compare 比较</li>
+<li>comm = common 常见的</li>
+<li>cp = CoPy 复制</li>
+<li>cpio = CoPy In and Out 拷贝进出
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 在当前目录以及所有子目录中查找文件, 并将它们放入名为 archive.cpio 的归档文件中</span>
+</span></span><span style="display:flex;"><span>find . -depth -print | cpio -ov &gt; archive.cpio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 这个命令会从名为 archive.cpio 的归档文件中提取所有文件, 并解压到当前目录中</span>
+</span></span><span style="display:flex;"><span>cpio -idv &lt; archive.cpio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 这个命令会列出名为 archive.cpio 的归档文件中包含的所有文件列表</span>
+</span></span><span style="display:flex;"><span>cpio -itv &lt; archive.cpio
+</span></span></code></pre></div></li>
+<li>cpp = C Pre Processor C预处理器</li>
+<li>cron = Chronos 希腊文时间, 用于执行定时任务
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>cron 的配置文件为 /etc/crontab, 这个文件定义了系统级别的计划任务. 而每个用户都可以使用 crontab 命令来创建自己的计划任务表(也就是 crontab 文件), 这些任务只对该用户有效
+</span></span></code></pre></div></li>
+<li>daemon = Disk And Execution MONitor 磁盘和执行监视器</li>
+<li>dc = Desk Calculator 桌上计算器(逆波兰式计算器)</li>
+<li>dd = Disk Dump 磁盘转储</li>
+<li>df = Disk Free 查看磁盘空间使用情况
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> df -h <span style="color:#75715e"># 选项表示以可读的方式输出结果, 易于阅读</span>
+</span></span></code></pre></div></li>
+<li>diff = DIFFerence 差异
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 基本语法</span>
+</span></span><span style="display:flex;"><span>diff file1 file2
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 额外参数</span>
+</span></span><span style="display:flex;"><span>diff -c file1 file2 <span style="color:#75715e"># 以上下文模式输出差异信息</span>
+</span></span><span style="display:flex;"><span>diff -u file1 file2 <span style="color:#75715e"># 以合并模式输出差异信息</span>
+</span></span><span style="display:flex;"><span>diff -i file1 file2 <span style="color:#75715e"># 忽略大小写进行比较</span>
+</span></span><span style="display:flex;"><span>diff -B file1 file2 <span style="color:#75715e"># 忽略空格进行比较</span>
+</span></span><span style="display:flex;"><span>diff -w file1 file2 <span style="color:#75715e"># 忽略所有空白字符进行比较</span>
+</span></span></code></pre></div></li>
+<li>du = Disk Usage 磁盘使用
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>du [-Aclnx] [-H | -L | -P] [-g | -h | -k | -m] [-a | -s | -d depth] [-B blocksize] [-I mask] [-t threshold] [file ...]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>下面对这些参数和选项进行一一解释：
+</span></span><span style="display:flex;"><span>-A : 将大文件(超过2GB)的大小正确计算为1KB, 而不是512字节；
+</span></span><span style="display:flex;"><span>-c : 显示指定文件或目录总共的大小；
+</span></span><span style="display:flex;"><span>-l : 统计符号链接占据磁盘空间的大小, 而不是链接指向的文件的大小；
+</span></span><span style="display:flex;"><span>-n : 不递归显示大小；
+</span></span><span style="display:flex;"><span>-x : 显示当前文件系统的大小, 不会统计挂载在其上的其他文件系统的大小；
+</span></span><span style="display:flex;"><span>-H : 递归处理命令行中指定的目录, 当遇到符号链接时, 直接使用链接所指向的文件的大小；
+</span></span><span style="display:flex;"><span>-L : 与 -H 类似, 但是当遇到符号链接时, 直接计算链接本身的大小；
+</span></span><span style="display:flex;"><span>-P : 与 -H 和 -L 相反, 不跟踪任何符号链接, 直接计算链接本身的大小；
+</span></span><span style="display:flex;"><span>-g, -h, -k, -m : 以不同的大小单位显示输出结果(用于人类可读)
+</span></span><span style="display:flex;"><span>-a : 显示所有文件和目录的大小；
+</span></span><span style="display:flex;"><span>-s : 只显示目录总大小, 不显示各子目录和文件的大小；
+</span></span><span style="display:flex;"><span>-d depth : 指定显示目录树的深度, 即子目录的最大层数；
+</span></span><span style="display:flex;"><span>-B blocksize : 指定块大小, 以字节为单位；
+</span></span><span style="display:flex;"><span>-I mask : 指定忽略某些文件或目录(按照 shell 的语法来进行匹配)；
+</span></span><span style="display:flex;"><span>-t threshold : 只对大于或等于指定大小的文件和目录进行计算磁盘空间使用情况
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>注意：在使用 du 命令时, 请谨慎选择文件或目录, 不要将它用于根目录 (&#34;/&#34;) 或 &#34;/home&#34; 等包含大量文件的目录, 否则可能会导致系统崩溃或性能下降
+</span></span></code></pre></div></li>
+<li>ed = editor 编辑</li>
+<li>egrep = Extended GREP 扩展的grep</li>
+<li>emacs = Editor MACroS 编辑宏, 一款强大的编辑器, 和 vim 并称两大最强编辑器</li>
+<li>eval = EVALuate 用于将命令行参数作为 shell 命令来执行
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mycmd<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ls&#34;</span> <span style="color:#f92672">&amp;&amp;</span> eval result<span style="color:#f92672">=</span>$mycmd <span style="color:#f92672">&amp;&amp;</span> echo $result
+</span></span></code></pre></div></li>
+<li>ex = EXtended 是一个文本编辑器, 是 vi 编辑器的前身. ex 编辑器相对来说比较老旧, 因为现在更常用的文本编辑器是 vi、nano、emacs 等</li>
+<li>exec = EXECute 执行
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 它用于执行一个命令并替换当前 shell 进程(即将当前进程替换为指定命令). exec 命令通常在 shell 脚本中使用, 可以用于执行其他程序并将其输出/错误输出重新定向到脚本中。</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 具体来说, 当你执行 exec 命令时, 它会首先关闭当前的 shell 进程, 然后创建一个新的进程来运行指定的命令, 这个新的进程将继承当前 shell 进程的环境变量和文件描述符等信息。因此, 通过 exec 命令可以让脚本中的命令取代 shell 进程, 从而达到更高效的执行效果。</span>
+</span></span></code></pre></div></li>
+<li>fd = file descriptors 文件描述符</li>
+<li>fg = ForeGround 前景</li>
+<li>fgrep = Fixed GREP 固定grep(非正则表达式匹配)</li>
+<li>fish = the Friendly Interactive SHell 是一款现代化的、用户友好的命令行 Shell</li>
+<li>file = file 查看文件类型, 是否是二进制等</li>
+<li>fmt = format 格式化文件</li>
+<li>grep = Global Regular Expression Print 全局正则表达式打印</li>
+<li>ksh = Korn SHell 是一个Unix和Linux系统上的命令行解释器和编程语言。它是由David Korn开发的，旨在提供一种功能更强大的shell，用于代替传统的Bourne shell和C shell。</li>
+<li>lex = LEXical analyser 词法分析器</li>
+<li>ln = LiNk</li>
+<li>ls = list 列出当前或指定目录下的文件和目录
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls -l <span style="color:#75715e"># 以长格式列出文件和目录信息，包括文件类型、权限、拥有者、大小、日期等</span>
+</span></span><span style="display:flex;"><span>ls -a <span style="color:#75715e"># 列出所有文件和目录，包括 . 开头的隐藏文件和目录</span>
+</span></span><span style="display:flex;"><span>ls -h <span style="color:#75715e"># 以易读的方式显示文件和目录的大小</span>
+</span></span><span style="display:flex;"><span>ls -t <span style="color:#75715e"># 按修改时间排序，最近修改的文件或目录先显示</span>
+</span></span><span style="display:flex;"><span>ls -r <span style="color:#75715e"># 反向排序，从后往前排列</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># $ which ls</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ls: aliased to ls -G</span>
+</span></span></code></pre></div></li>
+<li>lsof = LiSt Open Files 列出打开的文件, 并显示哪些进程打开了这些文件
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>lsof -p <span style="color:#ae81ff">100</span>     <span style="color:#75715e"># 显示指定 PID 的进程打开的文件信息。</span>
+</span></span><span style="display:flex;"><span>lsof -u yueyang <span style="color:#75715e"># 显示指定用户打开的文件信息</span>
+</span></span><span style="display:flex;"><span>lsof -c name    <span style="color:#75715e"># 列出指定进程名字的进程打开的所有文件</span>
+</span></span><span style="display:flex;"><span>lsof -i         <span style="color:#75715e"># 列出所有网络连接相关的文件</span>
+</span></span><span style="display:flex;"><span>lsof -n         <span style="color:#75715e"># 不进行DNS解析，直接使用IP地址</span>
+</span></span></code></pre></div></li>
+<li>make = make 配合 makefile 使用的命令行工具</li>
+<li>man = MANual pages 手册, 用于查看帮助文档</li>
+<li>mc = Midnight Commander &ldquo;午夜指挥官&rdquo;, 可用于浏览和管理Linux或Unix操作系统中的文件和目录</li>
+<li>mkfs = MaKe FileSystem 使文件系统</li>
+<li>mknod = MaKe NODe 使节点</li>
+<li>motd = Message of The Day 当天的信息</li>
+<li>mozilla = MOsaic GodZILLa</li>
+<li>mtab = Mount TABle 安装表</li>
+<li>mv = MoVe</li>
+<li>nano = Nano’s ANOther editor 纳米的另一个编辑</li>
+<li>nawk = New AWK</li>
+<li>nl = Number of Lines</li>
+<li>nm = names</li>
+<li>nohup = No HangUP 用于运行一个命令，使其不受终端关闭或网络中断的影响而继续在后台运行</li>
+<li>nroff = New ROFF</li>
+<li>od = Octal Dump 该命令的名称由来</li>
+<li>passwd = PASSWorD</li>
+<li>pg = pager</li>
+<li>pico = PIne’s message COmposition editor 松的消息组合编辑器</li>
+<li>pine = “Program for Internet News &amp; Email” = “Pine is not Elm”</li>
+<li>ping = Packet InterNet Groper ping程序</li>
+<li>pirntcap = PRINTer CAPability 打印机的能力</li>
+<li>popd = POP Directory</li>
+<li>pr = pre</li>
+<li>printf = PRINT Formatted</li>
+<li>ps = Processes Status 展示进程信息
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ps      <span style="color:#75715e"># 列出当前终端下所有进程的信息。</span>
+</span></span><span style="display:flex;"><span>ps -e   <span style="color:#75715e"># 列出系统上所有进程的信息，不仅限于当前终端。</span>
+</span></span><span style="display:flex;"><span>ps -f   <span style="color:#75715e"># 以全格式列出进程的信息，包括进程的UID、PID、PPID、C、STIME、TTY、TIME和CMD等。</span>
+</span></span><span style="display:flex;"><span>ps -aux <span style="color:#75715e"># 列出所有进程信息，包括其他用户的进程，并显示更详细的CPU和内存占用情况。</span>
+</span></span><span style="display:flex;"><span>ps -ejH <span style="color:#75715e"># 列出所有进程及其子进程，用树状结构表示。</span>
+</span></span><span style="display:flex;"><span>ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm <span style="color:#75715e"># 自定义显示进程的信息，包括进程的PID、线程ID、调度类、实时优先级、静态优先级、绑定的处理器、CPU占用率、进程状态、等待的系统调用和进程命令等。</span>
+</span></span></code></pre></div></li>
+<li>pty = pseudo tty</li>
+<li>pushd = PUSH Directory</li>
+<li>pwd = Print Working Directory 打印工作目录</li>
+<li>rc = runcom = run command</li>
+<li>rev = REVerse</li>
+<li>rm = ReMove</li>
+<li>rn = Read News</li>
+<li>roff = RunOFF</li>
+<li>rpm = RPM Package Manager = RedHat Package Manager    RedHat软件包管理器</li>
+<li>rsh, rlogin, rvim中的r = Remote</li>
+<li>rxvt = ouR XVT</li>
+<li>seamoneky = 我</li>
+<li>sed = Stream EDitor</li>
+<li>seq = SEQuence</li>
+<li>shar = SHell ARchive</li>
+<li>slrn = S-Lang rn</li>
+<li>ssh = Secure SHell</li>
+<li>ssl = Secure Sockets Layer</li>
+<li>stty = Set TTY</li>
+<li>su = Substitute User 或 Switch User(前者较常见)</li>
+<li>sudo = superuser / substitue user do 在ubuntu下更倾向于superuser, 因为它代表了root权限</li>
+<li>svn = SubVersioN</li>
+<li>tar = Tape ARchive</li>
+<li>tcsh = TENEX C shell</li>
+<li>tee = T (T形水管接口)</li>
+<li>telnet = TEminaL over Network</li>
+<li>termcap = terminal capability</li>
+<li>terminfo = terminal information</li>
+<li>tex = τέχνη的缩写, 希腊文art</li>
+<li>tr = translate</li>
+<li>troff = Typesetter new ROFF 照排机新Roff</li>
+<li>tsort = Topological SORT</li>
+<li>tty = TeleTypewriter</li>
+<li>twm = Tom’s Window Manager</li>
+<li>tz = TimeZone</li>
+<li>udev = Userspace DEV</li>
+<li>ulimit = User’s LIMIT</li>
+<li>umask = User’s MASK</li>
+<li>uniq = UNIQue</li>
+<li>vi = VIsual = Very Inconvenient 很不方便</li>
+<li>vim = Vi IMproved</li>
+<li>wall = write all</li>
+<li>wc = Word Count</li>
+<li>wine = WINE Is Not an Emulator 酒不是一个模拟器</li>
+<li>xargs = eXtended ARGuments 扩展参数</li>
+<li>xdm = X Display Manager X显示管理器</li>
+<li>xlfd = X Logical Font Description 逻辑字体描述</li>
+<li>xmms = X Multimedia System X多媒体系统</li>
+<li>xrdb = X Resources DataBase X资源数据库</li>
+<li>xwd = X Window Dump X窗口转储</li>
+<li>yacc = yet another compiler compiler 另一个编译器的编译器</li>
+</ol>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/learn4redis/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Learn4redis</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/learn4go/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Learn4go</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">卷毛的博客</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
